@@ -1,47 +1,43 @@
-# E.Y.E: Divine Cybermancy — Total Remaster Project
+# E.Y.E: Divine Cybermancy — Remastered
 
-An ambitious, multi-disciplinary overhaul project designed to completely re-engineer the visual depth, level design readability, and rendering pipelines of *E.Y.E: Divine Cybermancy* (Source Engine).
+Основная задача — сделать ремастер карт крутой игры E.Y.E: Divine Cybermancy.
 
-## 🎯 The Vision
+Короче, однозначно этот проект берет на себя задачу убрать все реальные графические баги на картах, как в следующих примерах:
 
-The retail version of *E.Y.E.* is a masterpiece of cyberpunk atmosphere, but many campaign levels were rushed. They suffer from flat lighting, poorly configured fog, and broken rendering bugs that completely destroy immersion. 
+### 🛠️ Исправление графических багов
+*(Здесь будут скрины с красными обводками проблемных мест)*
 
-This project aims to deliver a definitive remaster by attacking the game from two fronts simultaneously:
-1. **Campaign Map Overhaul:** Completely rebuilding and re-lighting the original campaign maps to maximize visual depth, atmosphere, and environmental storytelling.
-2. **Engine & Asset Fixing:** Reverse-engineering the game binaries to patch hardcoded rendering limitations and broken visual shaders.
+1. **[Скриншот 1]** — Описание визуального бага на первом скрине (например: огромный проп стоит прямо под лампой, но из-за бага центра освещения Source он полностью черный).
+2. **[Скриншот 2]** — Описание косяка (например: текстура ломается на стыке геометрии или просвечивает насквозь).
+3. **[Скриншот 3]** — Еще один пример бага.
 
----
+### 👁️ Читаемость и глубина сцен
+Также я хочу улучшить читаемость и глубину многих сцен в комнатах или открытых пространствах карт… например…
 
-## 🛠️ Project Subsystems & Current Focus
+* **[Пример 1]:** Огромные залы, где всё сливается в серую кашу. Буду добавлять нормальный туман (`env_fog_controller`) для объема.
+* **[Пример 2]:** Комнаты, где нихрена не понятно, куда идти. Сделаю нормальные световые акценты на дверях и проходах, чтобы не блуждать в трех соснах.
+### 🧰 Инструменты
+Я использую:
+* **Hammer++** (для Garry's Mod) — потому что оригинальный Hammer слишком древний и вылетает.
+* **BSPSource** — для декомпиляции оригинальных карт игры.
+* **VIDE** — чтобы вытаскивать паки текстур и моделей и не терять их.
+* ...и другие костыли по мелочи.
 
-### 1. 🗺️ Campaign Level Overhaul (Active)
-I am systematically auditing and rebuilding the original campaign maps. The focus is on fixing the rushed level design by injecting:
-* **Advanced Lighting:** Re-baking and fine-tuning lightmaps for realistic cyberpunk contrasts.
-* **Atmospheric Fog:** Calibrating fog density and colors to give locations true scale and depth.
-* **Prop & Detail Enhancement:** Adding environmental assets to make zones feel alive and visually readable.
+### 🔄 Процесс разработки
+Основная сложность тут — это **не** графику крутить. Самый ад начинается сразу после декомпиляции в `bspsource`. Карты ломаются, и приходится вручную восстанавливать всю логику, триггеры и скрипты, которые были утрачены или превратились в кашу в процессе декомпиляции. Для восстановления этого зоопарка как раз и используются Hammer++ и VIDE.
 
-*Current Stage:* 🔍 Auditing map files, testing lightmaps, and setting up the Source SDK mapping pipeline. The progress is slow, but precision takes time.
+### 📊 Прогресс ремастера
+*Актуальный статус разработки по этапам и картам:*
 
-### 2. 🐛 The Bullet Decal Fog Rendering Fix (Active Research)
-The most jarring engine bug: bullet impact decals (marks on walls) completely ignore active fog density and color. In heavy fog, they render with full pitch-black contrast, instantly ruining depth perception during firefights.
+| Задача / Карта | Статус | Комментарий |
+| :--- | :---: | :--- |
+| **Инструментарий** | ✅ Готово | Hammer++ настроен, подходящие компиляторы под BSP-формат игры найдены. |
+| **Тест компиляции** | ✅ Готово | Карта успешно декомпилена, собрана обратно и запускается в E.Y.E. `buildcubemaps` работает, отражения на месте. |
+| **Логика: `cm_warp_d.bsp`** | ⏳ В процессе | Восстановление сломанных триггеров, скриптов и всей логики уровня после декомпила. Пока ничего не работает. |
+| **Графика: `cm_warp_d.bsp`** | ❌ Не начато | Убийство явных тупых графических багов (черные пропы, кривые тени). |
+| **Свет и глубина: `cm_warp_d.bsp`** | ❌ Не начато | Улучшение освещения, настройка тумана и читаемости комнат. |
 
-*Current Stage:* 🔍 Binary Research & String Mapping.
-* **Objective:** Locate the decal rendering pipeline inside `client.dll` / `engine.dll` using IDA Pro / Ghidra and force it to multiply decal alpha/color by the active `GetFogFactor()`.
+*(Статусы: ✅ Готово | ⏳ Делается | ❌ Еще не трогал)*
 
----
 
-## 📊 Roadmap & Execution Log
 
-| Subsystem | Target Task | Status | Output Type |
-| :--- | :--- | :--- | :--- |
-| **Campaign Maps** | Re-lighting, Fog Calibration, Prop Layouts | ⏳ Slow & Active Development | Updated `.bsp` Maps |
-| **Asset Audit** | Fixing `.vmt` shader materials for decals | 🔍 In Progress | Modded VMT Patches |
-| **Binary Patching**| Injecting Fog-Decal memory fix into DLLs | ⏳ Planned | ASI Plugin / Proxy DLL |
-
----
-
-## 🎮 Development Environment
-
-* **Level Design Tools:** Hammer Editor / Custom Source SDK setups.
-* **Reverse Engineering Tools:** IDA Pro / Ghidra / Hex-Editors.
-* **Target Engine Branch:** Source Engine 2007 (E.Y.E. Proprietary Branch).
