@@ -1,43 +1,44 @@
 # E.Y.E: Divine Cybermancy — Remastered
 
-Основная задача — сделать ремастер карт крутой игры E.Y.E: Divine Cybermancy.
+The main goal is to remaster the maps of the awesome game E.Y.E: Divine Cybermancy.
 
-Короче, однозначно этот проект берет на себя задачу убрать все реальные графические баги на картах, как в следующих примерах:
+Simply put, this project definitely aims to fix all blatant visual bugs across the maps, as shown in the examples below:
 
-### 🛠️ Исправление графических багов
-*(Здесь будут скрины с красными обводками проблемных мест)*
+### 🛠️ Visual Bug Fixes
+*(Screenshots with red circles highlighting the problem areas will be placed here)*
 
-1. **[Скриншот 1]** — Описание визуального бага на первом скрине (например: огромный проп стоит прямо под лампой, но из-за бага центра освещения Source он полностью черный).
-2. **[Скриншот 2]** — Описание косяка (например: текстура ломается на стыке геометрии или просвечивает насквозь).
-3. **[Скриншот 3]** — Еще один пример бага.
+1. **[Screenshot 1]** — Description of the visual bug in the first screenshot (e.g., a huge prop stands directly under a lamp, but due to a Source lighting origin bug, it is pitch black).
+2. **[Screenshot 2]** — Description of the flaw (e.g., a texture breaking at a geometry seam or clipping right through).
+3. **[Screenshot 3]** — Another example of a bug.
 
-### 👁️ Читаемость и глубина сцен
-Также я хочу улучшить читаемость и глубину многих сцен в комнатах или открытых пространствах карт… например…
+### 👁️ Scene Readability and Depth
+I also want to improve the readability and depth of many scenes in rooms or open spaces on the maps... for example...
 
-* **[Пример 1]:** Огромные залы, где всё сливается в серую кашу. Буду добавлять нормальный туман (`env_fog_controller`) для объема.
-* **[Пример 2]:** Комнаты, где нихрена не понятно, куда идти. Сделаю нормальные световые акценты на дверях и проходах, чтобы не блуждать в трех соснах.
-### 🧰 Инструменты
-Я использую:
-* **Hammer++** (для Garry's Mod) — потому что оригинальный Hammer слишком древний и вылетает.
-* **BSPSource** — для декомпиляции оригинальных карт игры.
-* **VIDE** — чтобы вытаскивать паки текстур и моделей и не терять их.
-* ...и другие костыли по мелочи.
+* **[Example 1]:** Huge halls where everything blends into a gray mush. I will be adding proper fog (`env_fog_controller`) for depth and volume.
+* **[Example 2]:** Rooms where it is impossible to tell where to go. I will set up proper lighting accents on doors and pathways so players don't get lost in broad daylight.
 
-### 🔄 Процесс разработки
-Основная сложность тут — это **не** графику крутить. Самый ад начинается сразу после декомпиляции в `bspsource`. Карты ломаются, и приходится вручную восстанавливать всю логику, триггеры и скрипты, которые были утрачены или превратились в кашу в процессе декомпиляции. Для восстановления этого зоопарка как раз и используются Hammer++ и VIDE.
+### 🧰 Tools
+I am using:
+* **Hammer++** (for Garry's Mod) — because the original Hammer is way too ancient and constantly crashes.
+* **BSPSource** — to decompile the game's original maps.
+* **VIDE** — to extract texture packs and models so nothing gets lost.
+* ...and other minor workarounds and tweaks.
 
-### 📊 Прогресс ремастера
-*Актуальный статус разработки по этапам и картам:*
+### 🔄 Development Process
+The main challenge here is **not** tweaking the graphics. The real nightmare starts right after decompiling with `bspsource`. The maps break, and you have to manually rebuild all the logic, triggers, and scripts that were lost or turned into pure chaos during the decompilation process. Hammer++ and VIDE are used precisely to fix this mess.
 
-| Задача / Карта | Статус | Комментарий |
+### 📊 Remaster Progress
+*Current development status by stages and maps:*
+
+| Task / Map | Status | Comment |
 | :--- | :---: | :--- |
-| **Инструментарий** | ✅ Готово | Hammer++ настроен, подходящие компиляторы под BSP-формат игры найдены. |
-| **Тест компиляции** | ✅ Готово | Карта успешно декомпилена, собрана обратно и запускается в E.Y.E. `buildcubemaps` работает, отражения на месте. |
-| **Логика: `cm_warp_d.bsp`** | ⏳ В процессе | Восстановление сломанных триггеров, скриптов и всей логики уровня после декомпила. Пока ничего не работает. |
-| **Графика: `cm_warp_d.bsp`** | ❌ Не начато | Убийство явных тупых графических багов (черные пропы, кривые тени). |
-| **Свет и глубина: `cm_warp_d.bsp`** | ❌ Не начато | Улучшение освещения, настройка тумана и читаемости комнат. |
+| **Toolchain** | ✅ Done | Hammer++ is configured, and suitable compilers for the game's BSP format have been found. |
+| **Compilation Test** | ✅ Done | The map was successfully decompiled, recompiled, and runs in E.Y.E. `buildcubemaps` works, reflections are intact. |
+| **Logic: `cm_warp_d.bsp`** | ⏳ In Progress | Restoring broken triggers, scripts, and overall level logic after decompilation. Nothing works yet. |
+| **Graphics: `cm_warp_d.bsp`** | ❌ Not Started | Eliminating obvious, stupid visual bugs (black props, broken shadows). |
+| **Light & Depth: `cm_warp_d.bsp`** | ❌ Not Started | Improving lighting, setting up fog, and enhancing room readability. |
 
-*(Статусы: ✅ Готово | ⏳ Делается | ❌ Еще не трогал)*
+*(Statuses: ✅ Done | ⏳ In Progress | ❌ Not Started)*
 
 
 
