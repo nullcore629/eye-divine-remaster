@@ -1,4 +1,4 @@
-# E.Y.E: Divine Cybermancy — Remastered
+# E.Y.E: Divine Cybermancy - Remastered
 
 The main goal is to remaster the maps of the awesome game E.Y.E: Divine Cybermancy.
 
